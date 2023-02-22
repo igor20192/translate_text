@@ -1,5 +1,5 @@
 ## Консольный переводчик
-####Монтаж приложения.
+#### Монтаж приложения.
 Клонировать репозиторий
     git clone https://github.com/igor20192/translate_text.git
     cd translate_text
