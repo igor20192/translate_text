@@ -1,2 +1,27 @@
+We'll take a bit of a break from talking about different widgets (what to put onscreen) and focus instead on geometry management (where to put those widgets). We introduced the general idea of geometry management in the "Tk Concepts" chapter. Here, we focus on one specific geometry manager: grid.
 
-volumes
+As we've seen, grid lets you layout widgets in columns and rows. If you're familiar with using HTML tables for layout, you'll feel right at home here. This chapter illustrates the various ways you can tweak grid to give you all the control you need for your user interface.
+
+Grid is one of several geometry managers available in Tk, but its mix of power, flexibility, and ease of use make it the best choice for general use. Its constraint model is a natural fit with today's layouts that rely on the alignment of widgets. There are other geometry managers in Tk: pack is also quite powerful but harder to use and understand, while place gives you complete control of positioning each element. Even widgets like paned windows, notebooks, canvas, and text that we'll explore later can act as geometry managers.
+
+Columns and Rows
+In grid, widgets are assigned a column number and a row number. These indicate each widget's position relative to other widgets. Widgets in the same column are above or below each other. Those in the same row are to the left or right of each other.
+
+Column and row numbers must be positive integers (i.e., 0, 1, 2, ...). You don't have to start at 0 and can leave gaps in column and row numbers (e.g., column 1, 2, 10, 11, 12, 20, 21). This is useful if you plan to add more widgets in the middle of the user interface later.
+
+The width of each column will vary depending on the width of the widgets contained within the column. Ditto for the height of each row. This means when sketching out your user interface and dividing it into rows and columns, you don't need to worry about each column or row being equal width.
+
+Spanning Multiple Cells
+Widgets can take up more than a single cell in the grid; to do this, we'll use the columnspan and rowspan options when gridding the widget. These are analogous to the "colspan" and "rowspan" attributes of HTML tables.
+
+Here is an example of creating a user interface with multiple widgets, some that take up more than a single cell.
+Padding
+Normally, each column or row will be directly adjacent to the next so that widgets will be right next to each other. This is sometimes what you want (think of a listbox and its scrollbar), but often you want some space between widgets. In Tk, this is called padding, and there are several ways you can choose to add it.
+
+We've already actually seen one way, and that is using a widget's own options to add the extra space around it. Not all widgets have this, but one that does is a frame; this is useful because frames are most often used as the master to grid other widgets. The frame's padding option lets you specify a bit of extra padding inside the frame, whether the same amount for each of the four sides or even different for each.
+
+A second way is using the padx and pady grid options when adding the widget. As you'd expect, padx puts a bit of extra space to the left and right, while pady adds extra space top and bottom. A single value for the option puts the same padding on both left and right (or top and bottom), while a two-value list lets you put different amounts on left and right (or top and bottom). Note that this extra padding is within the grid cell containing the widget.
+
+If you want to add padding around an entire row or column, the columnconfigure and rowconfigure methods accept a pad option, which will do this for you.
+
+Let's add the extra sticky, resizing, and padding behavior to our example (additions in bold).
