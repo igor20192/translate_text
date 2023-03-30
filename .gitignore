@@ -1,2 +1,3 @@
 venv_postgres
 translate.log
+__pycache__
